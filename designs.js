@@ -1,7 +1,5 @@
 $(function() {
 
-  var color = getColorValue();
-
   // FUNCTIONS
 
   function getHeightValue() {
@@ -17,11 +15,11 @@ $(function() {
   }
 
   function clearGrid() {
-    $('#pixel_canvas').children().remove();
+    return $('#pixel_canvas').children().remove();
   }
 
   function fillSquare() {
-    $(this).css('background-color', color);
+    $(this).css('background-color', getColorValue());
   }
 
   function makeGrid() {
@@ -47,10 +45,6 @@ $(function() {
     e.preventDefault();
     makeGrid()
   });
-
-  $('input[type="color"]').change(function() {
-    color = getColorValue();
-  })
 
   $('#pixel_canvas').on('click', 'td', fillSquare)
 
