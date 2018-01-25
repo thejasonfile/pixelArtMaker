@@ -27,13 +27,13 @@ $(function() {
     clearGrid();
 
     //get input values for width and height
-    var rows = getWidthValue();
-    var cols = getHeightValue();
+    let rows = getWidthValue();
+    let cols = getHeightValue();
 
     //nested loop to build grid and append it to table
-    for (var r = 0; r < rows; r++) {
+    for (let r = 0; r < rows; r++) {
       $('#pixel_canvas').append(`<tr class="row${r}"></tr>`)
-      for (var c = 0; c < cols; c++) {
+      for (let c = 0; c < cols; c++) {
         $(`.row${r}`).append(`<td></td>`)
       }
     }
