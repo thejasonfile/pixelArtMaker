@@ -1,19 +1,57 @@
 $(function() {
 
-  // Select color input
-  var colorInput = $('#colorPicker');
-  // Select size input
-  var gridHeightInput = $('#input_height').val();
-  var gridWidthInput = $('#input_width').val();
+  var color = getColorValue();
 
-  function makeGrid(x, y) {
-    console.log(x, y);
+  // FUNCTIONS
+
+  function getHeightValue() {
+    return $('#input_height').val();
   }
 
-  // When size is submitted by the user, call makeGrid()
+  function getWidthValue() {
+    return $('#input_width').val();
+  }
+
+  function getColorValue() {
+    return $('input[type="color"]').val();
+  }
+
+  function clearGrid() {
+    $('#pixel_canvas').children().remove();
+  }
+
+  function fillSquare() {
+    $(this).css('background-color', color);
+  }
+
+  function makeGrid() {
+    //clear the previous grid
+    clearGrid();
+
+    //get input values for width and height
+    var rows = getWidthValue();
+    var cols = getHeightValue();
+
+    //nested loop to build grid and append it to table
+    for (var r = 0; r < rows; r++) {
+      $('#pixel_canvas').append(`<tr class="row${r}"></tr>`)
+      for (var c = 0; c < cols; c++) {
+        $(`.row${r}`).append(`<td></td>`)
+      }
+    }
+  }
+
+  // EVENT LISTENERS
+
   $('input[type="submit"]').click(function(e) {
     e.preventDefault();
-    makeGrid(gridWidthInput,gridHeightInput)
+    makeGrid()
   });
+
+  $('input[type="color"]').change(function() {
+    color = getColorValue();
+  })
+
+  $('#pixel_canvas').on('click', 'td', fillSquare)
 
 });
